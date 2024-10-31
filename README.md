@@ -18,6 +18,7 @@ The **Futurama Hall of Fame** is a web application designed to showcase the belo
 - **Custom Error Handling**: The application incorporates custom error pages for improved user experience, providing friendly messages in the event of server errors or not found pages.
 
 - **Robust Testing**: The codebase includes thorough unit tests using both `pytest` and `django.test`, ensuring the reliability and stability of the application.
+- **Logging Capability**: The application implements logging to capture important events and errors. This feature aids in monitoring application performance and debugging issues, providing valuable insights into the application's behavior in production.
 
 ### Purpose
 
