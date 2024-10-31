@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+{% load static %}
+
+<!-- Custom scripts for this template -->
+{% block scripts %}
+    <script src="{% static 'characters/js/characters.js' %}"></script>
+{% endblock scripts %}
+
+<!-- Custom styles for this template -->
+{% block stylesheets %}
+    <link href="{% static 'characters/css/characters.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block characters %}
+    {% for character in page_obj %}
+        {% if character.full_name %}
+        <div class="col-md-4 d-flex">
+            <div class="card mb-4 flex-fill">
+                <img src="{{ character.image_url }}" alt="{{ character.full_name }}" class="character-image rounded mx-auto d-block" onerror="this.onerror=null; this.src={% static 'characters/img/image_not_available.png' %};" >
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ character.full_name }}</h5>
+                    <p><strong>Gender:</strong> {{ character.gender|default:"N/A" }}</p>
+                    <p><strong>Species:</strong> {{ character.species|default:"N/A" }}</p>
+                    <p><strong>Occupation:</strong> {{ character.occupation|default:"N/A" }}</p>
+                    {% if character.sayings %}
+                    <button class="btn btn-primary mt-auto col-4" data-bs-target="#characterSayingsModal" data-bs-toggle="modal" data-title="{{character.full_name}} once said..." data-sayings="{{character.sayings}}" type="button">Sayings</button>
+                    {% else %}
+                    <button class="btn btn-primary mt-auto col-4" type="button" disabled>No sayings available</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Pagination controls -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock characters %}
+{% block modals %}
+    {% include 'characters/modals/character_sayings_modal.html' with dismiss_btn="Close" %}
+{% endblock modals %}

@@ -1,0 +1,50 @@
+.character-image {
+    width: 10rem;
+    height: 20rem;
+}
+
+.modal-header>button.close {
+    color: grey;
+    background: transparent;
+    border: none
+}
+
+.modal-content {
+  overflow-y: auto;    /* Adds scroll if content exceeds viewport height */
+  max-height: 90vh;    /* Restrict height to viewport height */
+  max-width: 90vw;     /* Restrict width to viewport width */
+  padding: 1rem;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #333;
+  padding: 1rem 9rem;
+  line-height: 1.6;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent background */
+  border-radius: 50%;
+}
+
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  font-size: 1.5rem;
+}
+
+/* Style for the fixed-width modal */
+.modal-dialog {
+    min-width: 70vw !important;
+    width: 70vw !important;     /* Fixed width */
+    height: 28vh !important;
+}
+
+
+
